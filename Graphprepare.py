@@ -11,10 +11,18 @@ dataset_name = "Input_CSV/{}".format(input("Bitte Namen des CSV-Dataset eingeben
 column = int(input("Welche Spalte soll betrachtet werden? [0 = erste Spalte]:    "))
 to_mask = int(input("Soll der Datensatz gekürzt werden? [1/0]:   "))
 
+
 if to_mask == 1:
 	mask_weight = float(input("Welches Verhältnis? [z.B. 0.5]:    "))
 else:
 	mask_weight = 1
+
+cust_sep = int(input("Hat die CSV einen anderen Serperator als \",\" [0/1]:   "))
+
+if cust_sep == 1:
+	sep = str(input("Welcher Seperator?  Tab = \"\\t\" / Semikolon = ;:  "))
+else:
+	sep = ","
 
 
 # try:
@@ -22,11 +30,13 @@ else:
 # except:
 # 	data = pd.read_csv(dataset_name, error_bad_lines=False, sep=";")
 
-data = pd.read_csv(dataset_name, error_bad_lines=False)
+data = pd.read_csv(dataset_name, error_bad_lines=False, sep=sep, skip_blank_lines=True)
 print("read_csv - check")
-mask = np.random.rand(len(data)) <= mask_weight
+print(data.head())
+if to_mask == 1:
+	mask = np.random.rand(len(data)) <= mask_weight
 
-data = data[mask]
+	data = data[mask]
 
 print(len(data))
 
@@ -38,11 +48,14 @@ working_data = working_data.dropna()
 
 max_features_working_data = int(4 * 10 ** 9 / (80*len(data))) - 2
 
-vectorizer = CountVectorizer(ngram_range=(1,1), stop_words = 'english', max_features = max_features_working_data).fit(working_data)
+if subtext == "Authors":
+	vectorizer = CountVectorizer(stop_words = 'english', max_features = max_features_working_data, tokenizer = lambda x: x.split(';')).fit(working_data)
+else:
+	vectorizer = CountVectorizer(ngram_range = (1,1), stop_words = 'english', max_features = max_features_working_data).fit(working_data)
 X = vectorizer.transform(working_data)
+
 print("CountVectorizer - check")
 names = vectorizer.get_feature_names()
-print(X)
 array_data = X.toarray()
 
 
