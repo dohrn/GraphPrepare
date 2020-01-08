@@ -6,8 +6,8 @@ import scipy.sparse
 import numpy as np
 
 
-
-dataset_name = "Input_CSV/{}".format(input("Bitte Namen des CSV-Dataset eingeben (z.B. Data.csv):   "))
+dataset_name = "{}".format(input("Bitte Namen des CSV-Dataset eingeben (z.B. Data.csv):   "))
+dataset_path = "Input_CSV/{}".format(dataset_name)
 column = int(input("Welche Spalte soll betrachtet werden? [0 = erste Spalte]:    "))
 to_mask = int(input("Soll der Datensatz gekürzt werden? [1/0]:   "))
 
@@ -30,7 +30,7 @@ else:
 # except:
 # 	data = pd.read_csv(dataset_name, error_bad_lines=False, sep=";")
 
-data = pd.read_csv(dataset_name, error_bad_lines=False, sep=sep, skip_blank_lines=True)
+data = pd.read_csv(dataset_path, error_bad_lines=False, sep=sep, skip_blank_lines=True)
 print("read_csv - check")
 print(data.head())
 if to_mask == 1:
@@ -71,7 +71,7 @@ print("JacSim - check")
 #top = int(0.2*len(jac_sim))
 #jac_sim = jac_sim.mask(jac_sim.rank(axis=0, method='min', ascending=False) > top, 0)
 print("JacSim_Reduce - check")
-output_file_name = "{}_{}_GraphInput.csv".format(dataset_name[:-4], subtext)
+output_file_name = "Output_CSV/{}_{}_GraphInput.csv".format(dataset_name[:-4], subtext)
 jac_sim.to_csv(output_file_name)
 
 print("Input für Graphen erfolgreich erzeugt. Liegt ab unter {}".format(output_file_name))
