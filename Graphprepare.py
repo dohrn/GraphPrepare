@@ -49,7 +49,8 @@ working_data = working_data.dropna()
 max_features_working_data = int(4 * 10 ** 9 / (80*len(data))) - 2
 
 if subtext == "Authors":
-	vectorizer = CountVectorizer(stop_words = 'english', max_features = max_features_working_data, tokenizer = lambda x: x.split(';')).fit(working_data)
+	author_sep = str(input("Welcher Seperator trennt die Autoren in einem Feld? Tabe = \"\\t\" / Semikolon = ; / Komma = , :"))
+	vectorizer = CountVectorizer(stop_words = 'english', max_features = max_features_working_data, tokenizer = lambda x: x.split(author_sep)).fit(working_data)
 else:
 	vectorizer = CountVectorizer(ngram_range = (1,1), stop_words = 'english', max_features = max_features_working_data).fit(working_data)
 X = vectorizer.transform(working_data)
