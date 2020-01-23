@@ -9,7 +9,7 @@ import numpy as np
 dataset_name = "{}".format(input("Bitte Namen des CSV-Dataset eingeben (z.B. Data.csv):   "))
 dataset_path = "Input_CSV/{}".format(dataset_name)
 column = int(input("Welche Spalte soll betrachtet werden? [0 = erste Spalte]:    "))
-to_mask = int(input("Soll der Datensatz gekürzt werden? [1/0]:   "))
+to_mask = int(input("Soll der Datensatz gekürzt werden? (nur notwendig bei sehr großen Datensätzen mit >1000 Zeilen) [1/0]:   "))
 
 
 if to_mask == 1:
@@ -50,9 +50,9 @@ max_features_working_data = int(4 * 10 ** 9 / (80*len(data))) - 2
 
 if subtext == "Authors":
 	author_sep = str(input("Welcher Seperator trennt die Autoren in einem Feld? Tabe = \"\\t\" / Semikolon = ; / Komma = , :"))
-	vectorizer = CountVectorizer(stop_words = 'english', max_features = max_features_working_data, tokenizer = lambda x: x.split(author_sep)).fit(working_data)
+	vectorizer = CountVectorizer(min_df = 0.01, ngram_range = (1,2), stop_words = 'english', max_features = max_features_working_data, tokenizer = lambda x: x.split(author_sep)).fit(working_data)
 else:
-	vectorizer = CountVectorizer(ngram_range = (1,1), stop_words = 'english', max_features = max_features_working_data).fit(working_data)
+	vectorizer = CountVectorizer(min_df = 0.01, ngram_range = (1,2), stop_words = 'english', max_features = max_features_working_data).fit(working_data)
 X = vectorizer.transform(working_data)
 
 print("CountVectorizer - check")
