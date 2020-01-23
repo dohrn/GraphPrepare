@@ -1,5 +1,6 @@
 # GraphPrepare
 Preparing CSV-Files for gephi-Graphs
 
-As shown by David Kriesel at 33C3 2016
-http://www.dkriesel.com/blog/2016/1028_spiegelmining_think_big._die_artikellandschaft_der_letzten_zwei_jahre_zum_selberforschen#readmore_blog_2016_1028_spiegelmining_think_big_die_artikellandschaft_der_letzten_zwei_jahre_zum_selberforschen
+Loosely based on Siegel Mining by David Kriesel shown at 33C3 2016
+https://cutt.ly/1rQfQlY
+
