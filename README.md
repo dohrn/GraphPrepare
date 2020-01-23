@@ -6,8 +6,8 @@ https://cutt.ly/1rQfQlY
 
 To get from This:
 
-![Scholar](https://github.com/dohrn/GraphPrepare/image.png)
+![](image.png)
 
 to this:
 
-![Graph](https://github.com/dohrn/GraphPrepare/ML_Graph.png)
+![](ML_Graph.png)
