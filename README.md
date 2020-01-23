@@ -6,4 +6,8 @@ https://cutt.ly/1rQfQlY
 
 To get from This:
 
-![Image of Yaktocat](/images/image.png)
+![Scholar](https://github.com/dohrn/GraphPrepare/image.png)
+
+to this:
+
+![Graph](https://github.com/dohrn/GraphPrepare/ML_Graph.png)
