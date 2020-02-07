@@ -1,2 +1,4 @@
-*.csv
-*.xlsx
+Input_CSV/*.csv
+Input_CSV/*.xlsx
+Output_CSV/*.csv
+Output_CSV/*.xlsx
